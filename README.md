@@ -1,1 +1,1 @@
-# sTMS-StorageService
+# scity-storage-service

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>storage-service</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <artifactId>lombok</artifactId>
+              <groupId>org.projectlombok</groupId>
+            </exclude>
+          </excludes>
+        </configuration>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+    <dependency>
+      <artifactId>mapstruct</artifactId>
+      <groupId>org.mapstruct</groupId>
+      <version>1.5.5.Final</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+    <dependency>
+      <artifactId>mapstruct-processor</artifactId>
+      <groupId>org.mapstruct</groupId>
+      <version>1.5.5.Final</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-devtools</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <optional>true</optional>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-aop</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <!--Swagger dependency-->
+    <dependency>
+      <artifactId>spring-boot-starter-validation</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <groupId>org.springdoc</groupId>
+      <version>2.0.2</version>
+    </dependency>
+    <!--Finish swagger dependency-->
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.6</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <!--Database dependency-->
+    <dependency>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <!--Eureka Client dependency-->
+    <dependency>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <!--Finish Eureka Client dependency-->
+
+
+    <!--Spring config-->
+    <dependency>
+      <artifactId>spring-cloud-starter-config</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-bootstrap</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+
+    <!--Postgres-->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!--Redis cache-->
+    <dependency>
+      <artifactId>spring-boot-starter-cache</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-session-data-redis</artifactId>
+      <groupId>org.springframework.session</groupId>
+    </dependency>
+
+    <!--        Kafka dependence-->
+    <dependency>
+      <artifactId>spring-kafka</artifactId>
+      <groupId>org.springframework.kafka</groupId>
+      <version>3.0.0</version>
+    </dependency>
+
+
+
+  </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-cloud.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <description>Storage project for Spring Boot</description>
+  <groupId>com.scity</groupId>
+  <modelVersion>4.0.0</modelVersion>
+  <name>storage-service</name>
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>3.1.0</version> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <annotation-api.version>1.2</annotation-api.version>
+    <io.grpc.version>1.40.1</io.grpc.version>
+
+    <java.version>17</java.version>
+    <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
+    <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
+    <protoc.version>3.17.2</protoc.version>
+    <spring-cloud.version>2022.0.3</spring-cloud.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+  <repositories>
+    <!--Your custom maven repo-->
+<!--    <repository>-->
+<!--      <id>reposilite-repository-releases</id>-->
+<!--      <name>Reposilite Repository</name>-->
+<!--      <url>https://private-maven.tma-swerp.com/releases</url>-->
+<!--    </repository>-->
+  </repositories>
+  <version>0.0.1-SNAPSHOT</version>
+</project>

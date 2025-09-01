@@ -1,0 +1,114 @@
+server:
+  port: ${POST:8810}
+  tomcat:
+    max-swallow-size: 500MB
+    max-http-form-post-size: 500MB
+  http2:
+    enabled: true
+  servlet:
+    context-path: /storage
+
+signature:
+  md5:
+    secret-key: OwsSedr9Zy
+logging:
+  level:
+    org:
+      springframework:
+        web: ERROR
+
+spring:
+  servlet:
+    multipart:
+      max-request-size: 500MB
+      max-file-size: 500MB
+      file-size-threshold: 10KB
+      enabled: true
+  application:
+    name: storage-service
+  # cloud:
+    # config:
+    #     uri: http://config:7720
+    servlet:
+      multipart:
+        max-file-size: 500MB
+        max-request-size: 500MB
+  kafka:
+    bootstrap-servers: kafka:9092
+    topic:
+      telemetry-topic: saveTelemetryTopic
+      websocket-topic: sendMessageTopic
+    consumer:
+      properties:
+        max.poll.interval.ms: 1800000 # Tùy chỉnh max.poll.interval.ms
+        max.poll.records: 3 # Tùy chỉnh max.poll.records
+  datasource:
+    url: jdbc:postgresql://postgresdb:5432/dbo_scity_storage
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    hikari:
+      pool-name: scity-storage-pool
+      maximum-pool-size: 50 #This means that HikariCP can maintain a maximum of 50 connections in the pool at any given time.
+      max-lifetime: 1800000 # a connection is allowed to live in the pool for a maximum of 30 minutes before it is closed and removed from the pool
+      idle-timeout: 300000 # after 5 minutes, if a connection is idle for longer than 5 minutes, it will be closed and removed from the pool
+      connection-timeout: 30000 #  if a connection is not available within 30 seconds, a SQLException will be thrown
+      minimum-idle: 3
+video:
+  limit-size: 100
+  duration: 3600000
+  qualities: 360, 720
+image:
+  limit-size: 10
+office:
+  limit-size: 200
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: "/v3/api-docs"
+  swagger-ui:
+    path: "/swagger-ui"
+    config-url: "${server.servlet.context-path}/v3/api-docs/swagger-config"
+    url: "/api${server.servlet.context-path}/v3/api-docs"
+    doc-expansion: none
+    disable-swagger-default-url: true
+scity:
+  app:
+    jwtSecret: opo0lTqyBduCX0xSHT7r3PtAERr4f1Ny
+    jwtRefresh: "AUTH::REFRESH::"
+    jwtExpirationMs: 600000
+    jwtRefreshExpirationMs: 2592000000
+    accountExpirationTime: 600000
+# server:
+#   http2:
+#     enabled: true
+# app:
+#   greeting: Hello from config file on gitlab at folder dev
+#   bypass-verification: 192168
+#   gateway:
+#     domain-name: https://scity.innovation.com.vn/api
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: discovery:${server.port}
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+# logging:
+#   file:
+#     name: application.log
+#   level:
+#     root: INFO
+#     org.springframework: INFO
+
+es:
+  hostname: elasticsearch
+  port: 9200
+  username: elastic
+  password: 12345678x@X
+default-system-name: Auto

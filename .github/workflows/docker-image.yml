@@ -55,5 +55,5 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd /home/nxthong/stms
-            sudo docker-compose pull storage
-            sudo docker-compose up -d storage
+            sudo docker compose pull storage-service
+            sudo docker compose up -d storage-service

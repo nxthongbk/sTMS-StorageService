@@ -43,7 +43,7 @@ spring:
         max.poll.interval.ms: 1800000 # Tùy chỉnh max.poll.interval.ms
         max.poll.records: 3 # Tùy chỉnh max.poll.records
   datasource:
-    url: jdbc:postgresql://postgresdb:5432/dbo_scity_storage
+    url: jdbc:postgresql://postgresdb:5432/dbo_stms_storage
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
@@ -73,7 +73,7 @@ springdoc:
     url: "/api${server.servlet.context-path}/v3/api-docs"
     doc-expansion: none
     disable-swagger-default-url: true
-scity:
+stms:
   app:
     jwtSecret: opo0lTqyBduCX0xSHT7r3PtAERr4f1Ny
     jwtRefresh: "AUTH::REFRESH::"
